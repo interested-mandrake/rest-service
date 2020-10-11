@@ -1,4 +1,4 @@
-package com.interestedmandrake.restservice.restservice;
+package com.interestedmandrake.restservice;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
