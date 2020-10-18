@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.interestedmandrake.restservice.dto.AuthorDTO;
+import com.interestedmandrake.restservice.exception.AuthorNotFoundException;
 import com.interestedmandrake.restservice.service.AuthorService;
 
 @RestController
@@ -33,7 +34,12 @@ public class AuthorResource {
 	
 	@GetMapping("/{id}")
 	public AuthorDTO retrieveAuthor(@PathVariable int id) {
-		return authorService.findAuthor(id);
+		AuthorDTO author = authorService.findAuthor(id);
+		if(author == null) {
+			throw new AuthorNotFoundException("Author " + id + " not found.");
+		}
+				
+		return author;
 	}
 	
 	@PostMapping
