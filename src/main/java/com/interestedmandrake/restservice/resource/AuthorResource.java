@@ -7,6 +7,7 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -28,25 +29,25 @@ public class AuthorResource {
 	private AuthorService authorService;
 	
 	@GetMapping
-	public List<AuthorDTO> getAllAuthors(){
-		return authorService.findAll();
+	public ResponseEntity<List<AuthorDTO>> getAllAuthors(){
+		return new ResponseEntity<List<AuthorDTO>>(authorService.findAll(), HttpStatus.OK);
 	}
 	
 	@GetMapping("/{id}")
-	public AuthorDTO retrieveAuthor(@PathVariable int id) {
+	public ResponseEntity<AuthorDTO> retrieveAuthor(@PathVariable int id) {
 		AuthorDTO author = authorService.findAuthor(id);
 		if(author == null) {
 			throw new AuthorNotFoundException("Author " + id + " not found.");
 		}
 				
-		return author;
+		return new ResponseEntity<AuthorDTO>(author, HttpStatus.OK);
 	}
 	
 	@PostMapping
-	public ResponseEntity<Object> createAuthor(@Valid @RequestBody AuthorDTO author){
+	public ResponseEntity<AuthorDTO> createAuthor(@Valid @RequestBody AuthorDTO author){
 		AuthorDTO savedAuthor = authorService.save(author);
 				
-		URI location = ServletUriComponentsBuilder
+		URI location = ServletUriComponentsBuilder 
 				.fromCurrentRequest()
 				.path("/{id}")
 				.buildAndExpand(savedAuthor.getId()).toUri();

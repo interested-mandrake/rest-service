@@ -17,7 +17,7 @@ public class AuthorService {
 	static {
 		authors.add(new AuthorDTO(1, "Maya Angelou", new Date()));
 		authors.add(new AuthorDTO(2, "J. K. Rowling", new Date()));
-		authors.add(new AuthorDTO(3, "J. R. R. Tolien", new Date())); 
+		authors.add(new AuthorDTO(3, "J. R. R. Tolkien", new Date())); 
 	}
 	
 	public List<AuthorDTO> findAll(){

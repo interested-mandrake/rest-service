@@ -2,7 +2,6 @@ package com.interestedmandrake.restservice.exception;
 
 import java.util.Date;
 
-// to create a single format to return as response for exception
 public class ExceptionResponse {
 	private Date date;
 	private String message;

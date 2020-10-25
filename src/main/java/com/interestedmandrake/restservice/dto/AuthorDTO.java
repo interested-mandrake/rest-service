@@ -5,12 +5,15 @@ import java.util.Date;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
-@ApiModel(description="describes data related to the author") // give a swagger annotation to enhance swagger documentation
+@ApiModel(description="describes data related to the author") 
 public class AuthorDTO {
 	
+	@JsonIgnore
 	Integer id;
 	
 	@Size(min = 2)
@@ -18,8 +21,8 @@ public class AuthorDTO {
 	String name;
 	
 	@Past
-	@ApiModelProperty(notes="date of birth must be in the past")
-	Date dob; // date of birth
+	@ApiModelProperty(value="date of birth", notes="date of birth must be in the past")
+	Date dob; 
 
 	public Integer getId() {
 		return id;
