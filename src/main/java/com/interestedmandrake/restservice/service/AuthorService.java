@@ -10,6 +10,8 @@ import com.interestedmandrake.restservice.dto.AuthorDTO;
 
 @Service
 public class AuthorService {
+	// TODO - refactor to call repository layer
+	
 	private static List<AuthorDTO> authors = new ArrayList<>();
 	
 	private static int authorCount = 3;
