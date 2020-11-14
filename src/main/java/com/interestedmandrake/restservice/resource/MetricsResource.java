@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/metrics")
 public class MetricsResource {
 	
+	// TO-DO take numRequests attribute out of controller into lower level class
+	
 	static Integer numRequests = 0;
 	
 	@GetMapping("/numRequests")
@@ -23,5 +25,14 @@ public class MetricsResource {
 	{
 		return new ResponseEntity<String>("Number of requests: " + String.valueOf(numRequests), HttpStatus.OK);
 	}
+
+	public static Integer getNumRequests() {
+		return numRequests;
+	}
+
+	public static void setNumRequests(Integer numRequests) {
+		MetricsResource.numRequests = numRequests;
+	}
+	
 	
 }
